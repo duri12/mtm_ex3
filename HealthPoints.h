@@ -10,7 +10,7 @@ class HealthPoints {
         explicit HealthPoints(int maxHealth = 100);
         ~HealthPoints() = default;
         HealthPoints(const HealthPoints& );
-        class InvalidArgument{};
+        class InvalidArgument{}; // a subclass for error handling
 
         const HealthPoints& operator+(int num);
         const HealthPoints& operator+=(int num);
