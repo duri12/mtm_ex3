@@ -12,10 +12,10 @@ class HealthPoints {
         HealthPoints(const HealthPoints& );
         class InvalidArgument{};
 
-        const HealthPoints* operator+(int num);
-        const HealthPoints* operator+=(int num);
-        const HealthPoints* operator-(int num);
-        const HealthPoints* operator-=(int num);
+        const HealthPoints& operator+(int num);
+        const HealthPoints& operator+=(int num);
+        const HealthPoints& operator-(int num);
+        const HealthPoints& operator-=(int num);
         bool operator==(const HealthPoints&) const;
         bool operator!=(const HealthPoints&) const;
         bool operator<=(const HealthPoints&) const;
