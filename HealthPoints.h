@@ -9,7 +9,10 @@ class HealthPoints {
         ~HealthPoints() = default;
         HealthPoints(const HealthPoints& );
         class InvalidArgument{};
-
+        const HealthPoints* operator+(int num);
+        const HealthPoints* operator+=(int num);
+        const HealthPoints* operator-(int num);
+        const HealthPoints* operator-=(int num);
 };
 
 #endif //MTM_EX3_HEALTHPOINTS_H
