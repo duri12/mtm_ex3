@@ -6,6 +6,8 @@ class HealthPoints {
         int m_maxHealth;
     public:
         explicit HealthPoints(int maxHealth = 100);
+        ~HealthPoints() = default;
+        HealthPoints(const HealthPoints& );
         class InvalidArgument{};
 
 };
