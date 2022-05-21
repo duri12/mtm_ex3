@@ -13,6 +13,12 @@ class HealthPoints {
         const HealthPoints* operator+=(int num);
         const HealthPoints* operator-(int num);
         const HealthPoints* operator-=(int num);
+        bool operator==(const HealthPoints&) const;
+        bool operator!=(const HealthPoints&) const;
+        bool operator<=(const HealthPoints&) const;
+        bool operator<(const HealthPoints&) const;
+        bool operator>=(const HealthPoints&) const;
+        bool operator>(const HealthPoints&) const;
 };
 
 #endif //MTM_EX3_HEALTHPOINTS_H
