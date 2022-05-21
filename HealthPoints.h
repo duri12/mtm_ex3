@@ -4,7 +4,7 @@ class HealthPoints {
     private:
         int m_currentHealth;
         int m_maxHealth;
-    private:
+    public:
         explicit HealthPoints(int maxHealth = 100);
 
 };
