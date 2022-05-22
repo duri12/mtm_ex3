@@ -7,7 +7,7 @@ class Queue{
     private:
     class Node{
         T* m_value;
-        Node* m_next;
+        Node m_next;
     };
     Node m_Last;
     Node m_First;
