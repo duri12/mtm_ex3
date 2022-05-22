@@ -4,15 +4,26 @@
 template <typename T>
 class Queue{
     public:
+    Queue();
+    int size() const;
     class EmptyQueue{};
-    private:
     class Node{
+    public:
+        Node(T value);
+        ~Node();
+        Node(const Node&);
+    private:
         T* m_value;
-        Node m_next;
+        Node* m_next;
+
     };
+    private:
+
     Node m_Last;
     Node m_First;
-    int Length;
+    int m_Length;
 
 };
+
+
 #endif //MTM_EX3_QUEUE_H
