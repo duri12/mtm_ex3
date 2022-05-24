@@ -14,6 +14,9 @@ class Queue{
     T& front();
     void popFirst();
 
+    class Iterator;
+    Iterator begin() const;
+    Iterator end() const;
 
     class EmptyQueue{};
     class Node
@@ -36,5 +39,15 @@ class Queue{
 
 };
 
-
+class Queue::Iterator {
+    const Queue* m_q;
+    Node* m_currNode;
+    Iterator(const Queue* q, const Node &m_currNode);
+public:
+    const int& operator*() const;
+    Iterator& operator++();
+    Iterator operator++(int);
+    bool operator!=(const Iterator& it) const;
+    friend class Queue;
+};
 #endif //MTM_EX3_QUEUE_H
