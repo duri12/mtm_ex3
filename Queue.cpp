@@ -125,13 +125,14 @@ Queue<T>::~Queue()
 template<typename T>
 void Queue<T>::pushback(T value) { // harel
     Node* cpy = new Queue<T>::Node(value);
-    cpy->m_next = m_Last;
-    m_Last = cpy;
-    if(m_Length==0) {
-        m_First = m_Last;
+    if(m_Length>0) {
+        m_Last->m_next = cpy;
+        m_Last = cpy;
+    } else {
+        m_First = cpy;
+        m_Last = cpy;
     }
     m_Length++;
-
 }
 
 
