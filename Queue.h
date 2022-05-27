@@ -173,25 +173,25 @@ template<typename T>
 Queue<T>::Queue(const Queue<T> &other)
 {
     m_Length = other.size();
-/*    m_First = NULL;
+    m_First = NULL;
     m_Last = NULL;
     Queue<T>::Node *thisCurr = NULL;
     Queue<T>::Node *otherCurr = NULL;
     if(other.size()>0)
     {
-        m_First = new Queue<T>::Node(other->m_first);
+        m_First = new Queue<T>::Node(*other.m_First);
         thisCurr = m_First;
         otherCurr = other.m_First->m_next;
 
     }
     for(int i=1; i<other.size(); i++)
     {
-        thisCurr->m_next = new Queue<T>::Node(otherCurr);
+        thisCurr->m_next = new Queue<T>::Node(*otherCurr);
         thisCurr = thisCurr->m_next;
         otherCurr = otherCurr->m_next;
     }
     m_Last = thisCurr;
-*/
+
 }
 template<typename T>
 Queue<T>::~Queue()
@@ -231,11 +231,10 @@ Queue<T>::Node::Node(const T& value){
 }
 
 
-
 template<typename T>
 Queue<T>::Node::Node(const Queue::Node &other) {
-    this->m_value = new T(other.m_value);
-    this->m_next = new Queue<T>::Node(other.m_next);
+    this->m_value = *new T(other.m_value);
+    this->m_next = new Queue<T>::Node(*other.m_next);
 }
 
 template<typename T>
