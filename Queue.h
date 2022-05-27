@@ -55,4 +55,23 @@ public:
     Iterator operator++(int);
     bool operator!=(const Iterator& it) ;
 };
+
+template<class T>
+class Queue<T>::ConstIterator {
+    const Queue* m_q;
+    int m_index{};
+    ConstIterator(const Queue* q, int index);
+    friend class Queue;
+public:
+    class InvalidOperation{};
+    const T& operator*() ;
+    const ConstIterator& operator++() const ;
+    const ConstIterator & operator++(int) const;
+    bool operator!=(const  ConstIterator& it) const ;
+};
+
+template<class T,class Condition>
+Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition );
+template<class T,class Transformer>
+void Transform(const Queue<T>& originalQueue , const Transformer myCondition );
 #endif //MTM_EX3_QUEUE_H

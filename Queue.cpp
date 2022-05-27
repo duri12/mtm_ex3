@@ -1,7 +1,7 @@
 #include "Queue.h"
 
 template<typename T>
-Queue<T>::Iterator::Iterator(const Queue* q,int index) { // const vs *
+Queue<T>::Iterator::Iterator(const Queue* q,int index) {
     m_q = q;
     m_index = index;
 }
@@ -30,11 +30,8 @@ template<class T>
 }
 
 template<typename T>
-typename Queue<T>::Iterator Queue<T>::Iterator::operator++(int) { // to look in pdf
-    /*
-     * i think this wont work as you are using ++
-     * on this, we should rethink it .
-     * */
+typename Queue<T>::Iterator Queue<T>::Iterator::operator++(int) {
+
     Iterator result = *this;
     ++*this;
     return result;
@@ -43,7 +40,7 @@ typename Queue<T>::Iterator Queue<T>::Iterator::operator++(int) { // to look in 
 template<typename T>
 bool Queue<T>::Iterator::operator!=(const Iterator& it) {
     if (it.m_q == m_q)
-    { // look in pdf
+    {
         throw(Queue<T>::Iterator::InvalidOperation());
     }
     Node* p1 = this->m_q->m_First;
@@ -70,7 +67,7 @@ typename Queue<T>::Iterator Queue<T>::begin()  {
 
 template<typename T>
 typename Queue<T>::Iterator Queue<T>::end()  {
-    return Iterator(this, m_Last);
+    return Iterator(this, NULL);
 }
 
 template<class T>
@@ -121,19 +118,6 @@ Queue<T>::~Queue()
     }
 }
 
-
-template<typename T>
-void Queue<T>::pushback(T value) { // harel
-    Node* cpy = new Queue<T>::Node(value);
-    if(m_Length>0) {
-        m_Last->m_next = cpy;
-        m_Last = cpy;
-    } else {
-        m_First = cpy;
-        m_Last = cpy;
-    }
-    m_Length++;
-}
 
 
 template<typename T>
@@ -206,9 +190,90 @@ void Queue<T>::popFirst()
 
 template<typename T>
 Queue<T> &Queue<T>::operator=(const Queue<T> &other) {
+    delete this->m_First;
     for (int i = 0; i <other.m_Length; i++)
     {
         pushBack(other.m_Queue[i]);
+    }
+    this->m_Length = other.m_Length;
+}
+
+template<class T>
+Queue<T>::ConstIterator::ConstIterator(const Queue *q, int index) {
+    this->m_q = q;
+    this->m_index = index;
+}
+
+template<class T>
+const T &Queue<T>::ConstIterator::operator*() {
+    if(this->m_q.size() <= this->index )
+    {
+        throw(Queue<T>::Iterator::InvalidOperation());
+    }
+    Node* p = this->m_q->m_First;
+    for (int i = 0; i <this->index; ++i) {
+        p = p->m_next;
+    }
+    return &p->m_value ;
+}
+
+template<class T>
+const typename Queue<T>::ConstIterator & Queue<T>::ConstIterator::operator++(int) const {
+    Iterator result = *this;
+    ++*this;
+    return result;
+}
+
+template<class T>
+bool Queue<T>::ConstIterator::operator!=(const Queue<T>::ConstIterator &it) const {
+    if (it.m_q == m_q)
+    {
+        throw(Queue<T>::Iterator::InvalidOperation());
+    }
+    Node* p1 = this->m_q->m_First;
+    for (int i = 0; i <this->index; ++i)
+    {
+        p1 = p1->m_next;
+    }
+    Node* p2 = this->m_q->m_First;
+    for (int i = 0; i <it->index; ++i)
+    {
+        p2 = p2->m_next;
+    }
+    if(p1->m_value == p2->m_value)
+    {
+        return false;
+    }
+    return true;
+}
+
+template<class T>
+const typename Queue<T>::ConstIterator &Queue<T>::ConstIterator::operator++() const {
+    Node* p = this->m_q->m_First;
+    for (int i = 0; i <this->index; ++i)
+    {
+        p = p->m_next;
+    }
+    this->m_index ++ ;
+    return this ;
+}
+template<class T,class Condition>
+Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
+    Queue<T>* newQueue = new Queue<T>();
+    for (typename Queue<T>::Iterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
+    {
+        if(myCondition(*i) == true)
+        {
+            newQueue->pushBack(*i);
+        }
+    }
+    return newQueue;
+}
+template<class T,class Transformer>
+void Transform(const Queue<T>& originalQueue ,const Transformer myCondition ){
+    for (typename Queue<T>::Iterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
+    {
+        myCondition(*i);
     }
 }
 
