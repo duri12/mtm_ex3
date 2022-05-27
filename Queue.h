@@ -216,7 +216,7 @@ T& Queue<T>::front()
     {
         throw(EmptyQueue());
     }
-    return &this->m_First->m_value;
+    return this->m_First->m_value;
 }
 
 
@@ -310,7 +310,7 @@ const T &Queue<T>::ConstIterator::operator*() {
         throw(Queue<T>::Iterator::InvalidOperation());
     }
     Node* p = this->m_q->m_First;
-    for (int i = 0; i <this->index; ++i) {
+    for (int i = 0; i <this->m_index; ++i) {
         p = p->m_next;
     }
     return &p->m_value ;
@@ -366,7 +366,7 @@ Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
             newQueue->pushBack(*i);
         }
     }
-    return newQueue;
+    return *newQueue;
 }
 template<class T,class Transformer>
 void transform(const Queue<T>& originalQueue ,const Transformer myCondition ){
