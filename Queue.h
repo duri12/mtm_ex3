@@ -13,7 +13,7 @@ class Queue{
     int size() const;
     void pushBack(const T& value);
     T& front();
-    void popFirst();
+    void popFront();
 
     class ConstIterator;
     ConstIterator begin() const;
@@ -73,5 +73,5 @@ public:
 template<class T,class Condition>
 Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition );
 template<class T,class Transformer>
-void Transform(const Queue<T>& originalQueue , const Transformer myCondition );
+void transform(const Queue<T>& originalQueue , const Transformer myCondition );
 #endif //MTM_EX3_QUEUE_H

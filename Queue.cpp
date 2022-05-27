@@ -168,7 +168,7 @@ void Queue<T>::pushBack(const T &value) {
 }
 
 template<typename T>
-void Queue<T>::popFirst()
+void Queue<T>::popFront()
 {
     if(this->m_Length == 0)
     {
@@ -196,6 +196,16 @@ Queue<T> &Queue<T>::operator=(const Queue<T> &other) {
         pushBack(other.m_Queue[i]);
     }
     this->m_Length = other.m_Length;
+}
+
+template<class T>
+typename Queue<T>::ConstIterator Queue<T>::begin() const {
+    return ConstIterator(this,m_First);
+}
+
+template<class T>
+typename Queue<T>::ConstIterator Queue<T>::end() const {
+    return ConstIterator(this, NULL);
 }
 
 template<class T>
@@ -270,7 +280,7 @@ Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
     return newQueue;
 }
 template<class T,class Transformer>
-void Transform(const Queue<T>& originalQueue ,const Transformer myCondition ){
+void transform(const Queue<T>& originalQueue ,const Transformer myCondition ){
     for (typename Queue<T>::Iterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
     {
         myCondition(*i);
