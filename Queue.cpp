@@ -258,7 +258,7 @@ bool Queue<T>::ConstIterator::operator!=(const Queue<T>::ConstIterator &it) cons
 }
 
 template<class T>
-const typename Queue<T>::ConstIterator &Queue<T>::ConstIterator::operator++() const {
+const typename Queue<T>::ConstIterator &Queue<T>::ConstIterator::operator++() {
     Node* p = this->m_q->m_First;
     for (int i = 0; i <this->index; ++i)
     {

@@ -59,13 +59,13 @@ public:
 template<class T>
 class Queue<T>::ConstIterator {
     const Queue* m_q;
-    int m_index{};
+    int m_index;
     ConstIterator(const Queue* q, int index);
     friend class Queue;
 public:
     class InvalidOperation{};
     const T& operator*() ;
-    const ConstIterator& operator++() const ;
+    const ConstIterator& operator++()  ;
     const ConstIterator & operator++(int) const;
     bool operator!=(const  ConstIterator& it) const ;
 };
