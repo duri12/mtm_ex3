@@ -275,9 +275,9 @@ void Queue<T>::popFront()
     }
     Node* temp = this->m_First->m_next;
     Node* toDelete = this->m_First;
-    *(this->m_First).~Node();
+    delete this->m_First;
     this->m_First = temp;
-    toDelete.~Node();
+    delete toDelete;
     this->m_Length -- ;
 }
 
