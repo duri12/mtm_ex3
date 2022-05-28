@@ -191,15 +191,15 @@ T& Queue<T>::front()
 
 template<typename T>
 Queue<T>::Node::Node(const T& value){
-    m_value = *(new T(value));
+    m_value = value;
     m_next = NULL;
 }
 
 
 template<typename T>
 Queue<T>::Node::Node(const Queue<T>::Node &other) {
-    this->m_value = *new T(other.m_value);
-    this->m_next = new Queue<T>::Node(*other.m_next);
+    this->m_value = other.m_value;
+    this->m_next = NULL;
 }
 
 template<typename T>
@@ -307,7 +307,6 @@ const typename Queue<T>::ConstIterator &Queue<T>::ConstIterator::operator++() {
 template<class T,class Condition>
 Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
     Queue<T>* newQueue = new Queue<T>();
-    int j = 0 ;
     for (typename Queue<T>::ConstIterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
     {
         if(myCondition(*i) == true)
