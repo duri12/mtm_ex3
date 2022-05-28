@@ -11,8 +11,9 @@ class HealthPoints {
         ~HealthPoints() = default;
         HealthPoints(const HealthPoints& );
         class InvalidArgument{}; // a subclass for error handling
-
+        const HealthPoints& operator=(const HealthPoints&);
         operator int() const;
+
         const HealthPoints& operator+(int num);
         const HealthPoints& operator+=(int num);
         const HealthPoints& operator-(int num);
@@ -24,6 +25,9 @@ class HealthPoints {
         bool operator>=(const HealthPoints&) const;
         bool operator>(const HealthPoints&) const;
         friend std::ostream& operator<<(std::ostream& os , const HealthPoints& points);
+        friend const HealthPoints& operator+(int num , const HealthPoints& HP);
+        friend const HealthPoints& operator-(int num , const HealthPoints& HP);
 };
-
+const HealthPoints& operator+(int num , const HealthPoints& HP);
+const HealthPoints& operator-(int num , const HealthPoints& HP);
 #endif //MTM_EX3_HEALTHPOINTS_H

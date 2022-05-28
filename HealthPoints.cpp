@@ -8,7 +8,6 @@ HealthPoints::HealthPoints(const HealthPoints& health2 )
 
 const HealthPoints& HealthPoints::operator+=(int num)
 {
-
     if(this->m_currentHealth + num <= 0)
     {
         this->m_currentHealth =0 ;
@@ -26,7 +25,6 @@ const HealthPoints& HealthPoints::operator+=(int num)
 
 const HealthPoints& HealthPoints::operator+(int num)
 {
-
     if(this->m_currentHealth + num <= 0)
     {
         this->m_currentHealth =0 ;
@@ -79,6 +77,14 @@ const HealthPoints& HealthPoints::operator-=(int num)
     return *this ;
 }
 
+const HealthPoints& HealthPoints::operator=(const HealthPoints& HP){
+    if(this == &HP){
+        return *this;
+    }
+    this->m_currentHealth = HP.m_currentHealth;
+    this->m_maxHealth = HP.m_maxHealth;
+    return *this;
+}
 bool HealthPoints::operator!=(const HealthPoints& other) const
 {
     return this->m_currentHealth != other.m_currentHealth;
@@ -117,5 +123,41 @@ HealthPoints::HealthPoints(int maxHealth) {
     }
     this->m_maxHealth = maxHealth;
     this->m_currentHealth = maxHealth;
+}
+
+const HealthPoints& operator-(int num , const HealthPoints& HP){
+    HealthPoints* newHP = new HealthPoints(HP);
+    if(newHP->m_currentHealth - num <= 0)
+    {
+        newHP->m_currentHealth =0 ;
+        return *newHP ;
+    }
+    else if (newHP->m_currentHealth - num >= newHP->m_maxHealth)
+    {
+        newHP->m_currentHealth =newHP->m_maxHealth;
+        return *newHP ;
+    }
+    else
+    {
+        newHP->m_currentHealth -= num;
+    }
+    return *newHP;
+
+}
+const HealthPoints& operator+(int num, const HealthPoints &HP) {
+    HealthPoints* newHP = new HealthPoints(HP);
+    if(newHP->m_currentHealth + num <= 0)
+    {
+        newHP->m_currentHealth = 0 ;
+    }
+    else if (newHP->m_currentHealth + num >= newHP->m_maxHealth)
+    {
+        newHP->m_currentHealth =newHP->m_maxHealth;
+    }
+    else
+    {
+        newHP->m_currentHealth += num;
+    }
+    return *newHP ;
 }
 
