@@ -125,39 +125,15 @@ HealthPoints::HealthPoints(int maxHealth) {
     this->m_currentHealth = maxHealth;
 }
 
-const HealthPoints& operator-(int num , const HealthPoints& HP){
-    HealthPoints* newHP = new HealthPoints(HP);
-    if(newHP->m_currentHealth - num <= 0)
-    {
-        newHP->m_currentHealth =0 ;
-        return *newHP ;
-    }
-    else if (newHP->m_currentHealth - num >= newHP->m_maxHealth)
-    {
-        newHP->m_currentHealth =newHP->m_maxHealth;
-        return *newHP ;
-    }
-    else
-    {
-        newHP->m_currentHealth -= num;
-    }
-    return *newHP;
+HealthPoints operator-(int num , const HealthPoints& HP){
+    HealthPoints newHP = HP;
+    newHP -= num;
+    return newHP ;
 
 }
-const HealthPoints& operator+(int num, const HealthPoints &HP) {
-    HealthPoints* newHP = new HealthPoints(HP);
-    if(newHP->m_currentHealth + num <= 0)
-    {
-        newHP->m_currentHealth = 0 ;
-    }
-    else if (newHP->m_currentHealth + num >= newHP->m_maxHealth)
-    {
-        newHP->m_currentHealth =newHP->m_maxHealth;
-    }
-    else
-    {
-        newHP->m_currentHealth += num;
-    }
-    return *newHP ;
+HealthPoints operator+(int num, const HealthPoints &HP) {
+    HealthPoints newHP = HP;
+    newHP += num;
+    return newHP ;
 }
 

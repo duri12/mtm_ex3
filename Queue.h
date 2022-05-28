@@ -95,7 +95,7 @@ const T& Queue<T>::Iterator::operator*() {
         throw(Queue<T>::Iterator::InvalidOperation());
     }
 
-    return this ->m_element->m_value;
+    return this->m_element->m_value;
 }
 
 
