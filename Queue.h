@@ -306,15 +306,15 @@ const typename Queue<T>::ConstIterator &Queue<T>::ConstIterator::operator++() {
 
 template<class T,class Condition>
 Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
-    Queue<T>* newQueue = new Queue<T>();
+    Queue<T> newQueue;
     for (typename Queue<T>::ConstIterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
     {
         if(myCondition(*i) == true)
         {
-            newQueue->pushBack(*i);
+            newQueue.pushBack(*i);
         }
     }
-    return *newQueue;
+    return newQueue;
 }
 template<class T,class Transformer>
 void transform(const Queue<T>& originalQueue ,const Transformer myCondition){
