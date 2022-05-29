@@ -170,8 +170,6 @@ Queue<T>::~Queue()
         this->m_First = this->m_First->m_next;
         delete temp;
     }
-    this->m_Last = NULL;
-    this->m_Length =0 ;
 
 }
 
@@ -307,6 +305,10 @@ const typename Queue<T>::ConstIterator &Queue<T>::ConstIterator::operator++() {
 template<class T,class Condition>
 Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
     Queue<T> newQueue;
+    if(originalQueue.size() ==0)
+    {
+        return newQueue;
+    }
     for (typename Queue<T>::ConstIterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
     {
         if(myCondition(*i) == true)
