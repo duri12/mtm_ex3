@@ -230,8 +230,9 @@ void Queue<T>::popFront()
     }
     if(this->m_Length == 1)
     {
-        this->m_Last = NULL;
-        this->m_First = NULL;
+        delete this->m_First;
+        this->m_Last = nullptr;
+        this->m_First = nullptr;
         this->m_Length = 0;
         return;
     }
@@ -311,8 +312,9 @@ Queue<T> filter(const Queue<T>& originalQueue , const Condition myCondition ){
     }
     for (typename Queue<T>::ConstIterator i = originalQueue.begin(); i != originalQueue.end(); ++i)
     {
-        if(myCondition(*i) == true)
+        if(!((myCondition(*i)== true)==false))
         {
+
             newQueue.pushBack(*i);
         }
     }
