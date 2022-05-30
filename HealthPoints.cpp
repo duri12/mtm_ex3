@@ -55,8 +55,10 @@ const HealthPoints& HealthPoints::operator-=(int num)
     return *this ;
 }
 
-const HealthPoints& HealthPoints::operator=(const HealthPoints& HP){
-    if(this == &HP){
+const HealthPoints& HealthPoints::operator=(const HealthPoints& HP)
+{
+    if(this == &HP)
+    {
         return *this;
     }
     this->m_currentHealth = HP.m_currentHealth;
@@ -93,21 +95,25 @@ std::ostream & operator<<(std::ostream &os , const HealthPoints &other)
     return os;
 }
 
-HealthPoints::HealthPoints(int maxHealth) {
-    if(maxHealth <= 0){
+HealthPoints::HealthPoints(int maxHealth)
+{
+    if(maxHealth <= 0)
+    {
         throw(HealthPoints::InvalidArgument());
     }
     this->m_maxHealth = maxHealth;
     this->m_currentHealth = maxHealth;
 }
 
-HealthPoints operator-(int num , const HealthPoints& HP){
+HealthPoints operator-(int num , const HealthPoints& HP)
+{
     HealthPoints newHP = HP;
     newHP -= num;
     return newHP ;
 
 }
-HealthPoints operator+(int num, const HealthPoints &HP) {
+HealthPoints operator+(int num, const HealthPoints &HP)
+{
     HealthPoints newHP = HP;
     newHP += num;
     return newHP ;

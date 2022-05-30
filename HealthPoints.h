@@ -2,7 +2,8 @@
 #define MTM_EX3_HEALTHPOINTS_H
 #include <iostream>
 
-class HealthPoints {
+class HealthPoints
+{
     private:
         int m_currentHealth;
         int m_maxHealth;
